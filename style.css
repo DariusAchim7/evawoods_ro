@@ -1,0 +1,751 @@
+/* Stiluri de bază pentru toată pagina */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Lora', serif;
+  background-color: #FFFFFF;
+  color: #3B2F2F;
+  padding-top: 6rem;
+}
+
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  color: #5C3D2E;
+}
+
+p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #6B4F3A;
+}
+
+/* ═══ SECȚIUNI ═══ */
+.section {
+  background-color: #FAF6F0;
+  border-radius: 70px;
+  margin: 2rem 2rem 2rem 2rem;
+  max-width: none;
+  padding: 2rem 2rem 2rem 2rem;
+  width: auto;
+}
+
+/* ═══ HEADER ═══ */
+.header {
+  position: fixed;
+  top: 1rem;
+  left: 2rem;
+  right: 2rem;
+  width: auto;
+  max-width: none;
+  z-index: 1000;
+  background-color: rgba(250, 246, 240, 0.95);
+  backdrop-filter: blur(8px);
+  border-radius: 50px;
+  border: 1px solid #E8D9C5;
+  transition: box-shadow 0.3s ease;
+}
+
+.header.scrolled {
+  box-shadow: 0 4px 25px rgba(92, 61, 46, 0.12);
+}
+
+.header-container {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 2rem;
+  height: 75px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Logo */
+.logo {
+  text-decoration: none;
+}
+
+.logo-img {
+  height: 50px;
+  width: auto;
+  display: block;
+}
+
+/* Navigare */
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.nav-link {
+  font-family: 'Lora', serif;
+  font-size: 0.95rem;
+  color: #5C3D2E;
+  text-decoration: none;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0%;
+  height: 1.5px;
+  background-color: #A07850;
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #A07850;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Buton WhatsApp */
+.btn-whatsapp {
+  background-color: #5C3D2E;
+  color: #FAF6F0 !important;
+  padding: 0.5rem 1.2rem;
+  border-radius: 25px;
+  font-family: 'Lora', serif;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  white-space: nowrap;
+}
+
+.btn-whatsapp:hover {
+  background-color: #A07850;
+  transform: translateY(-2px);
+}
+
+/* Hamburger (mobil) */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.hamburger span {
+  display: block;
+  width: 25px;
+  height: 2px;
+  background-color: #5C3D2E;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* ═══ HERO ═══ */
+.hero {
+  position: relative;
+  height: calc(100vh - 8rem);
+  border-radius: 50px;
+  overflow: hidden;
+  margin: 1rem 2rem 2rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #3B2F2F;
+}
+
+.hero-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(30, 18, 10, 0.3) 0%,
+    rgba(30, 18, 10, 0.6) 100%
+  );
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: #FAF6F0;
+  padding: 2rem;
+  max-width: 700px;
+}
+
+.hero-tagline {
+  font-family: 'Lora', serif;
+  font-size: 0.9rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #D4A96A;
+  margin-bottom: 1.2rem;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 0.2s;
+}
+
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 2.5rem;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 0.5s;
+}
+
+.hero-title em {
+  font-style: italic;
+  color: #D4A96A;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 0.8s;
+}
+
+.btn-primary {
+  background-color: #5C3D2E;
+  color: #FAF6F0;
+  padding: 0.85rem 2rem;
+  border-radius: 50px;
+  font-family: 'Lora', serif;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-primary:hover {
+  background-color: #A07850;
+  transform: translateY(-3px);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: #FAF6F0;
+  padding: 0.85rem 2rem;
+  border-radius: 50px;
+  border: 1.5px solid #FAF6F0;
+  font-family: 'Lora', serif;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-secondary:hover {
+  background-color: rgba(250, 246, 240, 0.15);
+  transform: translateY(-3px);
+}
+
+/* ═══ DESPRE NOI ═══ */
+.despre-content-center {
+  max-width: auto;
+  margin: 0;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.section-label {
+  font-family: 'Lora', serif;
+  font-size: 1rem;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: #A07850;
+  font-weight: 500;
+}
+
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: #5C3D2E;
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+  max-width: auto;
+}
+
+.despre-text {
+  font-family: 'Lora', serif;
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #6B4F3A;
+}
+
+.despre-text strong {
+  color: #5C3D2E;
+  font-weight: 500;
+}
+
+/* ═══ SERVICII ═══ */
+.servicii-header {
+  text-align: left;
+  margin-bottom: 2.5rem;
+}
+
+.section.servicii {
+  padding: 4rem 3rem;
+}
+
+.servicii-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.serviciu-card {
+  background-color: #FFFFFF;
+  border: 1px solid #E8D9C5;
+  border-radius: 24px;
+  padding: 2rem 1.5rem;
+  text-align: left;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.serviciu-card:hover .serviciu-icon i {
+  transform: scale(1.15) rotate(5deg);
+  color: #5C3D2E;
+}
+
+.serviciu-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 30px rgba(92, 61, 46, 0.12);
+  border-color: #A07850;
+}
+
+.serviciu-header-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.8rem;
+}
+
+.serviciu-icon {
+  flex-shrink: 0;
+}
+
+.serviciu-icon i {
+  font-size: 40px;
+  color: #A07850;
+  transition: all 0.4s ease;
+}
+
+.serviciu-content {
+  width: 100%;
+}
+
+.serviciu-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #5C3D2E;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0 0 0.5rem 0;
+}
+
+.serviciu-description {
+  font-family: 'Lora', serif;
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: #6B4F3A;
+  margin: 0;
+}
+
+.separator-line {
+  width: 50px;
+  height: 3px;
+  background-color: #D4A96A;
+  margin: 0;
+  transition: width 0.4s ease;
+}
+
+.serviciu-card:hover .separator-line {
+  width: 80px;
+}
+
+/* ═══ PORTOFOLIU - CARUSEL GRID ═══ */
+.portofoliu-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.section.portofoliu {
+  padding: 5rem 3rem;
+}
+
+/* Container pentru tot (wrapper + săgeți) */
+.portofoliu-carousel-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Wrapper cu overflow hidden */
+.carousel-wrapper {
+  position: relative;
+  overflow: hidden;
+  width: 1280px;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 2rem;
+  transition: transform 0.5s ease;
+}
+
+.carousel-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  cursor: pointer;
+  width: 400px;
+  height: 400px;
+  flex-shrink: 0;
+}
+
+.carousel-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.carousel-item:hover img {
+  transform: scale(1.08);
+}
+
+.carousel-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(59, 47, 47, 0.95), transparent);
+  color: #FAF6F0;
+  padding: 2rem 1rem 1rem;
+  text-align: center;
+  transform: translateY(100%);
+  transition: transform 0.4s ease;
+}
+
+.carousel-item:hover .carousel-caption {
+  transform: translateY(0);
+}
+
+.carousel-caption h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+}
+
+.carousel-caption p {
+  font-family: 'Lora', serif;
+  font-size: 0.85rem;
+  color: #D4A96A;
+}
+
+/* Săgeți Carusel */
+.carousel-btn {
+  background-color: #5C3D2E;
+  border: none;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(92, 61, 46, 0.2);
+  flex-shrink: 0;
+}
+
+.carousel-btn:hover {
+  background-color: #A07850;
+  transform: scale(1.1);
+}
+
+.carousel-btn i {
+  font-size: 1.3rem;
+  color: #FAF6F0;
+}
+
+/* ═══ MODAL GALERIE PROIECT ═══ */
+.project-modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.95);
+  align-items: center;
+  justify-content: center;
+}
+
+.project-modal.active {
+  display: flex;
+}
+
+.modal-close {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  font-size: 3rem;
+  color: #FAF6F0;
+  cursor: pointer;
+  z-index: 10001;
+  transition: color 0.3s ease;
+}
+
+.modal-close:hover {
+  color: #D4A96A;
+}
+
+.modal-content {
+  position: relative;
+  max-width: 1100px;
+  width: 90%;
+  padding: 2rem;
+}
+
+.modal-header {
+  text-align: center;
+  color: #FAF6F0;
+  margin-bottom: 2rem;
+}
+
+.modal-header h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.modal-header p {
+  font-family: 'Lora', serif;
+  font-size: 1rem;
+  color: #D4A96A;
+}
+
+.modal-gallery-main {
+  width: 100%;
+  max-height: 60vh;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+#modal-main-img {
+  max-width: 100%;
+  max-height: 60vh;
+  object-fit: contain;
+  border-radius: 12px;
+}
+
+.modal-thumbnails {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.modal-thumbnail {
+  width: 100px;
+  height: 75px;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 3px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.modal-thumbnail:hover {
+  border-color: #A07850;
+}
+
+.modal-thumbnail.active {
+  border-color: #D4A96A;
+}
+
+.modal-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Săgeți în Modal */
+.modal-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(250, 246, 240, 0.15);
+  border: 2px solid rgba(250, 246, 240, 0.3);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10000;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(5px);
+}
+
+.modal-nav-btn:hover {
+  background-color: rgba(160, 120, 80, 0.8);
+  border-color: #A07850;
+}
+
+.modal-nav-btn i {
+  font-size: 1.5rem;
+  color: #FAF6F0;
+}
+
+.modal-prev-btn {
+  left: 2rem;
+}
+
+.modal-next-btn {
+  right: 2rem;
+}
+
+/* ═══ RESPONSIVE ═══ */
+@media (max-width: 768px) {
+  .portofoliu-carousel-container {
+    gap: 1rem;
+  }
+  
+  .carousel-btn {
+    width: 45px;
+    height: 45px;
+  }
+  
+  .modal-nav-btn {
+    width: 45px;
+    height: 45px;
+  }
+  
+  .modal-prev-btn {
+    left: 0.5rem;
+  }
+  
+  .modal-next-btn {
+    right: 0.5rem;
+  }
+}
+
+/* ═══ RESPONSIVE ═══ */
+@media (max-width: 768px) {
+  .carousel-wrapper {
+    padding: 0 3rem;
+  }
+  
+  .modal-nav-btn {
+    width: 45px;
+    height: 45px;
+  }
+  
+  .modal-prev-btn {
+    left: 0.5rem;
+  }
+  
+  .modal-next-btn {
+    right: 0.5rem;
+  }
+}
+
+/* ═══ RESPONSIVE ═══ */
+@media (max-width: 768px) {
+  .portofoliu-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ═══ RESPONSIVE ═══ */
+@media (max-width: 768px) {
+  .servicii-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ═══ RESPONSIVE ═══ */
+@media (max-width: 768px) {
+  .despre-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .despre-image img {
+    max-height: 350px;
+  }
+}
+/* ═══ ANIMAȚII ═══ */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ═══ RESPONSIVE MOBIL ═══ */
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+
+  .nav {
+    display: none;
+    position: absolute;
+    top: 75px;
+    left: 0;
+    width: 100%;
+    flex-direction: column;
+    background-color: #FAF6F0;
+    padding: 1.5rem 2rem;
+    gap: 1.2rem;
+    border-bottom: 1px solid #E8D9C5;
+    box-shadow: 0 4px 15px rgba(92, 61, 46, 0.1);
+  }
+
+  .nav.open {
+    display: flex;
+  }
+}
