@@ -1,8 +1,15 @@
-/* Stiluri de bază pentru toată pagina */
+/* ═══════════════════════════════════════════════════════════════
+   BASE & RESET
+   ═══════════════════════════════════════════════════════════════ */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
 }
 
 body {
@@ -12,6 +19,9 @@ body {
   padding-top: 6rem;
 }
 
+/* ═══════════════════════════════════════════════════════════════
+   TYPOGRAPHY
+   ═══════════════════════════════════════════════════════════════ */
 h1 {
   font-family: 'Playfair Display', serif;
   font-size: 2rem;
@@ -24,24 +34,42 @@ p {
   color: #6B4F3A;
 }
 
-/* ═══ SECȚIUNI ═══ */
+.section-label {
+  font-family: 'Lora', serif;
+  font-size: 1rem;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: #A07850;
+  font-weight: 500;
+}
+
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: #5C3D2E;
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SECTIONS
+   ═══════════════════════════════════════════════════════════════ */
 .section {
   background-color: #FAF6F0;
   border-radius: 70px;
-  margin: 2rem 2rem 2rem 2rem;
-  max-width: none;
-  padding: 2rem 2rem 2rem 2rem;
-  width: auto;
+  margin: 2rem;
+  padding: 5rem 3rem;
 }
 
-/* ═══ HEADER ═══ */
+/* ═══════════════════════════════════════════════════════════════
+   HEADER
+   ═══════════════════════════════════════════════════════════════ */
 .header {
   position: fixed;
   top: 1rem;
   left: 2rem;
   right: 2rem;
-  width: auto;
-  max-width: none;
   z-index: 1000;
   background-color: rgba(250, 246, 240, 0.95);
   backdrop-filter: blur(8px);
@@ -55,8 +83,6 @@ p {
 }
 
 .header-container {
-  max-width: 100%;
-  margin: 0 auto;
   padding: 0 2rem;
   height: 75px;
   display: flex;
@@ -75,7 +101,7 @@ p {
   display: block;
 }
 
-/* Navigare */
+/* Navigation */
 .nav {
   display: flex;
   align-items: center;
@@ -110,7 +136,7 @@ p {
   width: 100%;
 }
 
-/* Buton WhatsApp */
+/* WhatsApp Button */
 .btn-whatsapp {
   background-color: #5C3D2E;
   color: #FAF6F0 !important;
@@ -119,7 +145,7 @@ p {
   font-family: 'Lora', serif;
   font-size: 0.9rem;
   text-decoration: none;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: all 0.3s ease;
   white-space: nowrap;
 }
 
@@ -128,7 +154,7 @@ p {
   transform: translateY(-2px);
 }
 
-/* Hamburger (mobil) */
+/* Hamburger Menu */
 .hamburger {
   display: none;
   flex-direction: column;
@@ -148,7 +174,9 @@ p {
   transition: all 0.3s ease;
 }
 
-/* ═══ HERO ═══ */
+/* ═══════════════════════════════════════════════════════════════
+   HERO
+   ═══════════════════════════════════════════════════════════════ */
 .hero {
   position: relative;
   height: calc(100vh - 8rem);
@@ -163,8 +191,7 @@ p {
 
 .hero-video {
   position: absolute;
-  top: 0;
-  left: 0;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -174,11 +201,7 @@ p {
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(30, 18, 10, 0.3) 0%,
-    rgba(30, 18, 10, 0.6) 100%
-  );
+  background: linear-gradient(to bottom, rgba(30, 18, 10, 0.3), rgba(30, 18, 10, 0.6));
   z-index: 1;
 }
 
@@ -234,7 +257,7 @@ p {
   font-family: 'Lora', serif;
   font-size: 0.95rem;
   text-decoration: none;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: all 0.3s ease;
 }
 
 .btn-primary:hover {
@@ -251,7 +274,7 @@ p {
   font-family: 'Lora', serif;
   font-size: 0.95rem;
   text-decoration: none;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: all 0.3s ease;
 }
 
 .btn-secondary:hover {
@@ -259,33 +282,13 @@ p {
   transform: translateY(-3px);
 }
 
-/* ═══ DESPRE NOI ═══ */
+/* ═══════════════════════════════════════════════════════════════
+   DESPRE NOI
+   ═══════════════════════════════════════════════════════════════ */
 .despre-content-center {
-  max-width: auto;
-  margin: 0;
-  text-align: left;
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
-}
-
-.section-label {
-  font-family: 'Lora', serif;
-  font-size: 1rem;
-  letter-spacing: 0.5em;
-  text-transform: uppercase;
-  color: #A07850;
-  font-weight: 500;
-}
-
-.section-title {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 700;
-  color: #5C3D2E;
-  line-height: 1.2;
-  margin-bottom: 0.5rem;
-  max-width: auto;
 }
 
 .despre-text {
@@ -300,14 +303,16 @@ p {
   font-weight: 500;
 }
 
-/* ═══ SERVICII ═══ */
+/* ═══════════════════════════════════════════════════════════════
+   SERVICII
+   ═══════════════════════════════════════════════════════════════ */
 .servicii-header {
   text-align: left;
   margin-bottom: 2.5rem;
 }
 
-.section.servicii {
-  padding: 4rem 3rem;
+.servicii-carousel-wrapper {
+  position: relative;
 }
 
 .servicii-grid {
@@ -321,15 +326,9 @@ p {
   border: 1px solid #E8D9C5;
   border-radius: 24px;
   padding: 2rem 1.5rem;
-  text-align: left;
-  transition: all 0.3s ease;
   display: flex;
   flex-direction: column;
-}
-
-.serviciu-card:hover .serviciu-icon i {
-  transform: scale(1.15) rotate(5deg);
-  color: #5C3D2E;
+  transition: all 0.3s ease;
 }
 
 .serviciu-card:hover {
@@ -355,8 +354,9 @@ p {
   transition: all 0.4s ease;
 }
 
-.serviciu-content {
-  width: 100%;
+.serviciu-card:hover .serviciu-icon i {
+  transform: scale(1.15) rotate(5deg);
+  color: #5C3D2E;
 }
 
 .serviciu-title {
@@ -367,14 +367,6 @@ p {
   text-transform: uppercase;
   letter-spacing: 0.05em;
   margin: 0 0 0.5rem 0;
-}
-
-.serviciu-description {
-  font-family: 'Lora', serif;
-  font-size: 0.9rem;
-  line-height: 1.7;
-  color: #6B4F3A;
-  margin: 0;
 }
 
 .separator-line {
@@ -389,17 +381,45 @@ p {
   width: 80px;
 }
 
-/* ═══ PORTOFOLIU - CARUSEL GRID ═══ */
+.serviciu-description {
+  font-family: 'Lora', serif;
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: #6B4F3A;
+  margin: 0;
+}
+
+/* Dots - ascunse pe desktop */
+.servicii-dots {
+  display: none;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 2rem;
+}
+
+.servicii-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #E8D9C5;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.servicii-dot.active {
+  background-color: #A07850;
+  width: 24px;
+  border-radius: 5px;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   PORTOFOLIU
+   ═══════════════════════════════════════════════════════════════ */
 .portofoliu-header {
   text-align: center;
   margin-bottom: 3rem;
 }
 
-.section.portofoliu {
-  padding: 5rem 3rem;
-}
-
-/* Container pentru tot (wrapper + săgeți) */
 .portofoliu-carousel-container {
   position: relative;
   display: flex;
@@ -410,11 +430,11 @@ p {
   margin: 0 auto;
 }
 
-/* Wrapper cu overflow hidden */
 .carousel-wrapper {
   position: relative;
   overflow: hidden;
-  width: 1280px;
+  width: 1264px;
+  max-width: 100%;
 }
 
 .carousel-track {
@@ -474,7 +494,7 @@ p {
   color: #D4A96A;
 }
 
-/* Săgeți Carusel */
+/* Carousel Buttons */
 .carousel-btn {
   background-color: #5C3D2E;
   border: none;
@@ -482,7 +502,6 @@ p {
   height: 55px;
   border-radius: 50%;
   cursor: pointer;
-  z-index: 10;
   transition: all 0.3s ease;
   display: flex;
   align-items: center;
@@ -501,15 +520,12 @@ p {
   color: #FAF6F0;
 }
 
-/* ═══ MODAL GALERIE PROIECT ═══ */
+/* Modal */
 .project-modal {
   display: none;
   position: fixed;
+  inset: 0;
   z-index: 9999;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
   background-color: rgba(0, 0, 0, 0.95);
   align-items: center;
   justify-content: center;
@@ -606,7 +622,6 @@ p {
   object-fit: cover;
 }
 
-/* Săgeți în Modal */
 .modal-nav-btn {
   position: absolute;
   top: 50%;
@@ -617,7 +632,6 @@ p {
   height: 60px;
   border-radius: 50%;
   cursor: pointer;
-  z-index: 10000;
   transition: all 0.3s ease;
   display: flex;
   align-items: center;
@@ -643,7 +657,9 @@ p {
   right: 2rem;
 }
 
-/* ═══ TESTIMONIALE ═══ */
+/* ═══════════════════════════════════════════════════════════════
+   TESTIMONIALE
+   ═══════════════════════════════════════════════════════════════ */
 .testimoniale-header {
   text-align: center;
   margin-bottom: 3rem;
@@ -676,7 +692,6 @@ p {
   display: flex;
   align-items: center;
   gap: 1rem;
-  margin-bottom: 0.5rem;
 }
 
 .testimonial-avatar {
@@ -694,16 +709,11 @@ p {
   flex-shrink: 0;
 }
 
-.testimonial-info {
-  flex: 1;
-}
-
 .testimonial-name {
   font-family: 'Playfair Display', serif;
   font-size: 1.1rem;
   font-weight: 700;
   color: #5C3D2E;
-  margin-bottom: 0.2rem;
 }
 
 .testimonial-stars {
@@ -726,7 +736,9 @@ p {
   margin-top: auto;
 }
 
-/* ═══ CONTACT ═══ */
+/* ═══════════════════════════════════════════════════════════════
+   CONTACT
+   ═══════════════════════════════════════════════════════════════ */
 .contact-intro {
   text-align: center;
   margin-bottom: 4rem;
@@ -757,7 +769,6 @@ p {
   align-items: start;
 }
 
-/* Formular */
 .contact-form {
   display: flex;
   flex-direction: column;
@@ -812,7 +823,6 @@ p {
   font-weight: 500;
   cursor: pointer;
   transition: all 0.3s ease;
-  margin-top: 0.5rem;
 }
 
 .form-submit-btn:hover {
@@ -821,14 +831,12 @@ p {
   box-shadow: 0 5px 20px rgba(92, 61, 46, 0.2);
 }
 
-/* Info contact */
 .contact-info-title {
   font-family: 'Playfair Display', serif;
   font-size: 1.5rem;
   font-weight: 700;
   color: #5C3D2E;
   margin-bottom: 1rem;
-  line-height: 1.4;
 }
 
 .contact-info-subtitle {
@@ -848,7 +856,6 @@ p {
 .contact-detail-item {
   display: flex;
   gap: 1.2rem;
-  align-items: start;
 }
 
 .contact-icon {
@@ -865,12 +872,6 @@ p {
 .contact-icon i {
   font-size: 1.2rem;
   color: #FAF6F0;
-}
-
-.contact-detail-content {
-  display: flex;
-  flex-direction: column;
-  gap: 0.3rem;
 }
 
 .contact-detail-label {
@@ -895,7 +896,9 @@ p {
   color: #A07850;
 }
 
-/* ═══ FOOTER ═══ */
+/* ═══════════════════════════════════════════════════════════════
+   FOOTER
+   ═══════════════════════════════════════════════════════════════ */
 .footer {
   background-color: #5C3D2E;
   color: #FAF6F0;
@@ -906,92 +909,9 @@ p {
   font-size: 0.9rem;
 }
 
-/* ═══ RESPONSIVE ═══ */
-@media (max-width: 768px) {
-  .contact-container {
-    grid-template-columns: 1fr;
-    gap: 3rem;
-  }
-}
-
-/* ═══ RESPONSIVE ═══ */
-@media (max-width: 768px) {
-  .testimoniale-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* ═══ RESPONSIVE ═══ */
-@media (max-width: 768px) {
-  .portofoliu-carousel-container {
-    gap: 1rem;
-  }
-  
-  .carousel-btn {
-    width: 45px;
-    height: 45px;
-  }
-  
-  .modal-nav-btn {
-    width: 45px;
-    height: 45px;
-  }
-  
-  .modal-prev-btn {
-    left: 0.5rem;
-  }
-  
-  .modal-next-btn {
-    right: 0.5rem;
-  }
-}
-
-/* ═══ RESPONSIVE ═══ */
-@media (max-width: 768px) {
-  .carousel-wrapper {
-    padding: 0 3rem;
-  }
-  
-  .modal-nav-btn {
-    width: 45px;
-    height: 45px;
-  }
-  
-  .modal-prev-btn {
-    left: 0.5rem;
-  }
-  
-  .modal-next-btn {
-    right: 0.5rem;
-  }
-}
-
-/* ═══ RESPONSIVE ═══ */
-@media (max-width: 768px) {
-  .portofoliu-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* ═══ RESPONSIVE ═══ */
-@media (max-width: 768px) {
-  .servicii-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* ═══ RESPONSIVE ═══ */
-@media (max-width: 768px) {
-  .despre-container {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-
-  .despre-image img {
-    max-height: 350px;
-  }
-}
-/* ═══ ANIMAȚII ═══ */
+/* ═══════════════════════════════════════════════════════════════
+   ANIMATIONS
+   ═══════════════════════════════════════════════════════════════ */
 @keyframes fadeUp {
   from {
     opacity: 0;
@@ -1003,8 +923,15 @@ p {
   }
 }
 
-/* ═══ RESPONSIVE MOBIL ═══ */
+/* ═══════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════════════ */
 @media (max-width: 768px) {
+  body {
+    padding-top: 5rem;
+  }
+
+  /* Header */
   .hamburger {
     display: flex;
   }
@@ -1025,5 +952,92 @@ p {
 
   .nav.open {
     display: flex;
+  }
+
+  /* Sections */
+  .section {
+    padding: 3rem 1.5rem;
+  }
+
+  /* Servicii */
+   /* Servicii - Carousel pe mobil */
+  .servicii-carousel-wrapper {
+    overflow: hidden;
+    padding: 0 1rem;
+  }
+
+  .servicii-grid {
+    display: flex;
+    gap: 1rem;
+    transition: transform 0.4s ease;
+    scroll-snap-type: x mandatory;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding: 0.5rem 0;
+  }
+
+  .servicii-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .serviciu-card {
+    min-width: calc(100vw - 4rem);
+    max-width: calc(100vw - 4rem);
+    scroll-snap-align: center;
+    flex-shrink: 0;
+  }
+
+  .servicii-dots {
+    display: flex;
+  }
+
+  /* Portofoliu */
+  .section.portofoliu {
+    padding: 3rem 1rem;
+  }
+  
+  .portofoliu-carousel-container {
+    gap: 0.5rem;
+  }
+
+  .carousel-wrapper {
+    width: 100%;
+    max-width: calc(100vw - 110px);
+  }
+
+  .carousel-item {
+    width: 280px;
+    height: 280px;
+  }
+
+  .carousel-btn {
+    width: 45px;
+    height: 45px;
+  }
+
+  .carousel-btn i {
+    font-size: 1rem;
+  }
+
+  .carousel-caption h3 {
+    font-size: 0.95rem;
+  }
+
+  .carousel-caption p {
+    font-size: 0.75rem;
+  }
+
+  /* Testimoniale */
+  .testimoniale-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Contact */
+  .contact-container {
+    grid-template-columns: 1fr;
+    gap: 3rem;
   }
 }

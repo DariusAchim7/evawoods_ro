@@ -1,21 +1,38 @@
-// ── Meniu hamburger (mobil) ──
+// ═══════════════════════════════════════════════════════════════
+// HEADER & NAVIGATION
+// ═══════════════════════════════════════════════════════════════
+
 const hamburger = document.getElementById('hamburger');
 const nav = document.getElementById('nav');
+const header = document.querySelector('.header');
 
+// Hamburger menu toggle
 hamburger.addEventListener('click', () => {
   nav.classList.toggle('open');
 });
 
-// Închide meniul când dai click pe un link
+// Close menu and smooth scroll on link click
 document.querySelectorAll('.nav-link').forEach(link => {
-  link.addEventListener('click', () => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
     nav.classList.remove('open');
+    
+    const targetId = link.getAttribute('href');
+    const targetSection = document.querySelector(targetId);
+    
+    if (targetSection) {
+      const headerHeight = 100;
+      const targetPosition = targetSection.offsetTop - headerHeight;
+      
+      window.scrollTo({
+        top: targetPosition,
+        behavior: 'smooth'
+      });
+    }
   });
 });
 
-// ── Shadow pe header la scroll ──
-const header = document.querySelector('.header');
-
+// Header shadow on scroll
 window.addEventListener('scroll', () => {
   if (window.scrollY > 50) {
     header.classList.add('scrolled');
@@ -24,9 +41,10 @@ window.addEventListener('scroll', () => {
   }
 });
 
-// ── PORTOFOLIU: Carusel Grid + Modal Galerie ──
+// ═══════════════════════════════════════════════════════════════
+// PORTOFOLIU - CAROUSEL
+// ═══════════════════════════════════════════════════════════════
 
-// Date proiecte (fiecare cu poză principală + poze secundare)
 const projects = [
   {
     title: 'Bucătărie modernă',
@@ -50,14 +68,13 @@ const projects = [
     title: 'Dressing modern',
     description: 'MDF vopsit, compartimentare inteligentă',
     images: [
-      'assets/proiect1-main.jpg',
-      'assets/proiect1-2.jpg',
-      'assets/proiect1-3.jpg',
+      'assets/proiect3-main.jpg',
+      'assets/proiect3-2.jpg',
+      'assets/proiect3-3.jpg',
     ]
   }
 ];
 
-// ═══ CARUSEL GRID ═══
 const carouselTrack = document.getElementById('carousel-track');
 const carouselPrev = document.querySelector('.carousel-prev-btn');
 const carouselNext = document.querySelector('.carousel-next-btn');
@@ -69,14 +86,14 @@ let isTransitioning = false;
 function setupInfiniteCarousel() {
   const items = Array.from(carouselTrack.children);
   
-  // Clonează ultimele 3 și pune-le la început
+  // Clone last 3 items and prepend
   for (let i = totalProjects - 3; i < totalProjects; i++) {
     const clone = items[i].cloneNode(true);
     clone.classList.add('clone');
     carouselTrack.insertBefore(clone, carouselTrack.firstChild);
   }
   
-  // Clonează primele 3 și pune-le la final
+  // Clone first 3 items and append
   for (let i = 0; i < 3; i++) {
     const clone = items[i].cloneNode(true);
     clone.classList.add('clone');
@@ -88,16 +105,14 @@ function setupInfiniteCarousel() {
 }
 
 function updateCarouselPosition(animate = true) {
-  const itemWidth = 400;
-  const gap = 32;
-  const offset = currentIndex * (itemWidth + gap);
+  const isMobile = window.innerWidth <= 768;
+  const itemWidth = isMobile ? 280 : 400;
+  const gap = isMobile ? 16 : 32;
   
-  if (animate) {
-    carouselTrack.style.transition = 'transform 0.5s ease';
-  } else {
-    carouselTrack.style.transition = 'none';
-  }
+  // Calculează offset-ul corect
+  const offset = (currentIndex - 3) * (itemWidth + gap);
   
+  carouselTrack.style.transition = animate ? 'transform 0.5s ease' : 'none';
   carouselTrack.style.transform = `translateX(-${offset}px)`;
 }
 
@@ -131,9 +146,16 @@ carouselNext.addEventListener('click', () => {
   updateCarouselPosition(true);
 });
 
+window.addEventListener('resize', () => {
+  updateCarouselPosition(false);
+});
+
 setupInfiniteCarousel();
 
-// ═══ MODAL GALERIE ═══
+// ═══════════════════════════════════════════════════════════════
+// PORTOFOLIU - MODAL
+// ═══════════════════════════════════════════════════════════════
+
 const modal = document.getElementById('project-modal');
 const modalClose = document.querySelector('.modal-close');
 const modalTitle = document.getElementById('modal-project-title');
@@ -147,18 +169,12 @@ let currentProjectIndex = 0;
 let currentImageIndex = 0;
 
 function openProjectModal(projectIndex) {
-  console.log('openProjectModal called with index:', projectIndex);
-  
-  if (projectIndex < 0 || projectIndex >= totalProjects) {
-    console.error('Index invalid:', projectIndex);
-    return;
-  }
+  if (projectIndex < 0 || projectIndex >= totalProjects) return;
   
   currentProjectIndex = projectIndex;
   currentImageIndex = 0;
   
   const project = projects[projectIndex];
-  console.log('Project:', project);
   
   modalTitle.textContent = project.title;
   modalDescription.textContent = project.description;
@@ -169,12 +185,10 @@ function openProjectModal(projectIndex) {
     const thumb = document.createElement('div');
     thumb.className = 'modal-thumbnail' + (index === 0 ? ' active' : '');
     thumb.innerHTML = `<img src="${img}" alt="" />`;
-    
     thumb.addEventListener('click', (e) => {
       e.stopPropagation();
       showImage(index);
     });
-    
     modalThumbnails.appendChild(thumb);
   });
   
@@ -185,24 +199,17 @@ function openProjectModal(projectIndex) {
 function showImage(index) {
   const project = projects[currentProjectIndex];
   currentImageIndex = index;
-  
   modalMainImg.src = project.images[index];
   
-  const thumbs = document.querySelectorAll('.modal-thumbnail');
-  thumbs.forEach((thumb, i) => {
+  document.querySelectorAll('.modal-thumbnail').forEach((thumb, i) => {
     thumb.classList.toggle('active', i === index);
   });
 }
 
-// Attach click listeners DUPĂ ce caruselul e setat
+// Attach click listeners to carousel items
 setTimeout(() => {
-  const allItems = document.querySelectorAll('.carousel-item');
-  console.log('Total items (cu clone):', allItems.length);
-  
-  allItems.forEach((item, visualIndex) => {
+  document.querySelectorAll('.carousel-item').forEach((item, visualIndex) => {
     item.addEventListener('click', () => {
-      console.log('Click pe visual index:', visualIndex);
-      
       let realIndex;
       
       if (visualIndex < 3) {
@@ -213,13 +220,12 @@ setTimeout(() => {
         realIndex = visualIndex - 3;
       }
       
-      console.log('Real index calculat:', realIndex);
       openProjectModal(realIndex);
     });
   });
 }, 100);
 
-// Închide modal
+// Close modal
 modalClose.addEventListener('click', () => {
   modal.classList.remove('active');
   document.body.style.overflow = 'auto';
@@ -232,7 +238,7 @@ modal.addEventListener('click', (e) => {
   }
 });
 
-// Navigare în modal
+// Navigate modal images
 modalPrevBtn.addEventListener('click', () => {
   const project = projects[currentProjectIndex];
   const newIndex = currentImageIndex > 0 ? currentImageIndex - 1 : project.images.length - 1;
@@ -245,7 +251,7 @@ modalNextBtn.addEventListener('click', () => {
   showImage(newIndex);
 });
 
-// Taste săgeți în modal
+// Keyboard navigation
 document.addEventListener('keydown', (e) => {
   if (modal.classList.contains('active')) {
     if (e.key === 'ArrowLeft') modalPrevBtn.click();
@@ -254,7 +260,10 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
-// ── FORMULAR CONTACT CU WEB3FORMS ──
+// ═══════════════════════════════════════════════════════════════
+// CONTACT FORM - WEB3FORMS
+// ═══════════════════════════════════════════════════════════════
+
 const contactForm = document.getElementById('contact-form');
 const formMessage = document.getElementById('form-message');
 
@@ -269,22 +278,13 @@ contactForm.addEventListener('submit', async (e) => {
   
   const formData = new FormData(contactForm);
   
-  console.log('Date formular:');
-  for (let [key, value] of formData.entries()) {
-    console.log(key + ': ' + value);
-  }
-  
   try {
     const response = await fetch('https://api.web3forms.com/submit', {
       method: 'POST',
       body: formData
     });
     
-    console.log('Status răspuns:', response.status);
-    console.log('Response OK:', response.ok);
-    
     const data = await response.json();
-    console.log('Răspuns complet de la Web3Forms:', data);
     
     if (response.ok && data.success) {
       formMessage.style.display = 'block';
@@ -300,23 +300,62 @@ contactForm.addEventListener('submit', async (e) => {
       setTimeout(() => {
         formMessage.style.display = 'none';
       }, 5000);
-      
     } else {
       throw new Error(data.message || `Eroare: ${response.status}`);
     }
-    
   } catch (error) {
-    console.error('Eroare completă:', error);
-    
     formMessage.style.display = 'block';
     formMessage.style.color = '#8B0000';
     formMessage.style.backgroundColor = '#FFEBEE';
     formMessage.style.padding = '1rem';
     formMessage.style.borderRadius = '12px';
     formMessage.style.marginTop = '1rem';
-    formMessage.textContent = '✗ A apărut o eroare: ' + error.message + '. Verifică consola pentru detalii.';
+    formMessage.textContent = '✗ A apărut o eroare. Te rugăm să încerci din nou.';
   } finally {
     submitBtn.textContent = originalText;
     submitBtn.disabled = false;
   }
 });
+
+// ═══════════════════════════════════════════════════════════════
+// SERVICII CAROUSEL (MOBIL)
+// ═══════════════════════════════════════════════════════════════
+
+const serviciiTrack = document.getElementById('servicii-track');
+const serviciiDots = document.querySelectorAll('.servicii-dot');
+let currentServiceIndex = 0;
+
+function updateServiceDots() {
+  if (window.innerWidth > 768) return;
+  
+  const scrollLeft = serviciiTrack.scrollLeft;
+  const cardWidth = serviciiTrack.querySelector('.serviciu-card').offsetWidth + 16;
+  const index = Math.round(scrollLeft / cardWidth);
+  
+  serviciiDots.forEach((dot, i) => {
+    dot.classList.toggle('active', i === index);
+  });
+  
+  currentServiceIndex = index;
+}
+
+// Update dots on scroll
+if (serviciiTrack) {
+  serviciiTrack.addEventListener('scroll', updateServiceDots);
+  
+  // Click on dots
+  serviciiDots.forEach((dot, index) => {
+    dot.addEventListener('click', () => {
+      if (window.innerWidth <= 768) {
+        const cardWidth = serviciiTrack.querySelector('.serviciu-card').offsetWidth + 16;
+        serviciiTrack.scrollTo({
+          left: cardWidth * index,
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
+  
+  // Update on resize
+  window.addEventListener('resize', updateServiceDots);
+};
