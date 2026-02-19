@@ -253,3 +253,70 @@ document.addEventListener('keydown', (e) => {
     else if (e.key === 'Escape') modalClose.click();
   }
 });
+
+// ── FORMULAR CONTACT CU WEB3FORMS ──
+const contactForm = document.getElementById('contact-form');
+const formMessage = document.getElementById('form-message');
+
+contactForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  
+  const submitBtn = contactForm.querySelector('.form-submit-btn');
+  const originalText = submitBtn.textContent;
+  
+  submitBtn.textContent = 'Se trimite...';
+  submitBtn.disabled = true;
+  
+  const formData = new FormData(contactForm);
+  
+  console.log('Date formular:');
+  for (let [key, value] of formData.entries()) {
+    console.log(key + ': ' + value);
+  }
+  
+  try {
+    const response = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      body: formData
+    });
+    
+    console.log('Status răspuns:', response.status);
+    console.log('Response OK:', response.ok);
+    
+    const data = await response.json();
+    console.log('Răspuns complet de la Web3Forms:', data);
+    
+    if (response.ok && data.success) {
+      formMessage.style.display = 'block';
+      formMessage.style.color = '#5C3D2E';
+      formMessage.style.backgroundColor = '#E8F5E9';
+      formMessage.style.padding = '1rem';
+      formMessage.style.borderRadius = '12px';
+      formMessage.style.marginTop = '1rem';
+      formMessage.textContent = '✓ Mulțumim! Mesajul tău a fost trimis cu succes. Te vom contacta în curând.';
+      
+      contactForm.reset();
+      
+      setTimeout(() => {
+        formMessage.style.display = 'none';
+      }, 5000);
+      
+    } else {
+      throw new Error(data.message || `Eroare: ${response.status}`);
+    }
+    
+  } catch (error) {
+    console.error('Eroare completă:', error);
+    
+    formMessage.style.display = 'block';
+    formMessage.style.color = '#8B0000';
+    formMessage.style.backgroundColor = '#FFEBEE';
+    formMessage.style.padding = '1rem';
+    formMessage.style.borderRadius = '12px';
+    formMessage.style.marginTop = '1rem';
+    formMessage.textContent = '✗ A apărut o eroare: ' + error.message + '. Verifică consola pentru detalii.';
+  } finally {
+    submitBtn.textContent = originalText;
+    submitBtn.disabled = false;
+  }
+});
