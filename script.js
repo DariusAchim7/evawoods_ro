@@ -106,8 +106,8 @@ function setupInfiniteCarousel() {
 
 function updateCarouselPosition(animate = true) {
   const isMobile = window.innerWidth <= 768;
-  const itemWidth = isMobile ? 280 : 400;
-  const gap = isMobile ? 16 : 32;
+  const itemWidth = isMobile ? 228 : 400;
+  const gap = isMobile ? 32 : 32;
   
   // Calculează offset-ul corect
   const offset = (currentIndex - 3) * (itemWidth + gap);

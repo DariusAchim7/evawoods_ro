@@ -233,6 +233,7 @@ p {
   margin-bottom: 2.5rem;
   opacity: 0;
   animation: fadeUp 0.8s ease forwards 0.5s;
+  color: #D4A96A;
 }
 
 .hero-title em {
@@ -984,8 +985,8 @@ p {
   }
 
   .serviciu-card {
-    min-width: calc(100vw - 4rem);
-    max-width: calc(100vw - 4rem);
+    min-width: calc(100vw - 9rem);
+    max-width: calc(100vw - 9rem);
     scroll-snap-align: center;
     flex-shrink: 0;
   }
@@ -1009,7 +1010,7 @@ p {
   }
 
   .carousel-item {
-    width: 280px;
+    width: 228px;
     height: 280px;
   }
 
