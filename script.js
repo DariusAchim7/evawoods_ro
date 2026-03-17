@@ -108,12 +108,15 @@ if (carouselTrack) {
       ]
     },
     {
-      title: 'Dressing modern',
-      description: 'MDF vopsit, compartimentare inteligentă',
+      title: 'Baie moderna',
+      description: 'MDF vopsit in culoarea bej creta',
       images: [
-        'assets/proiect3-main.jpg',
-        'assets/proiect3-2.jpg',
-        'assets/proiect3-3.jpg',
+        'assets/proiecte/Baie-Carmen/IMG_3974.JPEG',
+        'assets/proiecte/Baie-Carmen/IMG_3973.JPEG',
+        'assets/proiecte/Baie-Carmen/IMG_3975.JPEG',
+        'assets/proiecte/Baie-Carmen/IMG_3980.JPEG',
+        'assets/proiecte/Baie-Carmen/IMG_3984(1).JPEG',
+        'assets/proiecte/Baie-Carmen/IMG_3987.JPEG'
       ]
     }
   ];
