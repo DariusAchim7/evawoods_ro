@@ -111,7 +111,7 @@ if (carouselTrack) {
       title: 'Baie moderna',
       description: 'MDF vopsit in culoarea bej creta',
       images: [
-        'assets/proiecte/Baie-Carmen/IMG_3974.JPEG',
+        'assets/proiecte/Baie-Carmen/IMG_3974.JPG',
         'assets/proiecte/Baie-Carmen/IMG_3973.JPEG',
         'assets/proiecte/Baie-Carmen/IMG_3975.JPEG',
         'assets/proiecte/Baie-Carmen/IMG_3980.JPEG',
